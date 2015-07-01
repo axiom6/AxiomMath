@@ -1,7 +1,7 @@
 
 package axiom6.math.ext
 import  axiom6.math.exp._
-import  axiom6..util.Text
+import  axiom6.util.Text
 
 trait Integrate
 {

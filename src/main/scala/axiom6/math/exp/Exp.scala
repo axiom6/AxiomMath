@@ -2,6 +2,7 @@
 package axiom6.math.exp
 import  axiom6.math.ext._
 import  axiom6.util.Text
+import  scala.language.implicitConversions
 
 abstract class Exp extends
   Ascii     with Lambda        with MathML    with Latex      with

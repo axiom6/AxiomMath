@@ -2,6 +2,7 @@
 package axiom6.math.exp
 import  axiom6.math.num.Cpl
 import  axiom6.util.{ Log => Logg }
+import  scala.language.implicitConversions
 
 case class Cex( r:Exp, i:Exp ) extends Exp
 {  

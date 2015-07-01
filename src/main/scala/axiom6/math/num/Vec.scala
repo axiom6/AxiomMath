@@ -1,6 +1,6 @@
 
 package axiom6.math.num
-import  math.util.Text
+import  axiom6.util.Text
 
 class Vec( _n:Int )
 {   
@@ -73,7 +73,7 @@ class Vec( _n:Int )
         t.app(']') 
         t
     }
-    def str : String = text.str
+    def str : String = text.toString
     override def toString = str
 
 // ... comprehensions ...

@@ -69,7 +69,7 @@ object Log
       app( name, '.', stack(i).getMethodName, ':', stack(i).getLineNumber, ' '  )
 
     }
-    text(text.len-1) = ']'
+    text.setCharAt( text.len-1, ']' )
     out()
   }
 
@@ -81,7 +81,7 @@ object Log
      for( a <- arr )
        text.app( a, ' ' )
      if( text.len > 1 )
-         text.len -= 1
+         text.delTail()
      text.app( " ]" )
      out()
      eol()
@@ -100,7 +100,7 @@ object Log
   def out()
   {
     for( i <- 0 until text.len )
-      Console.out.print( text(i) )
+      Console.out.print( text.charAt(i) )
     Console.out.flush()
     text.clear()
   }

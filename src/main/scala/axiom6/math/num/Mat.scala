@@ -158,7 +158,7 @@ class Mat private ( _mat:Matrix )
     t
   }
 
-  def str : String = text.str
+  def str : String = text.toString
   override def toString = str
 
 // ... for comprehensions ...

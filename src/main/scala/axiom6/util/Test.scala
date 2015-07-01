@@ -11,22 +11,22 @@ object Test
   def app( args:Any* )
   {
      for( arg<-args )
-       text.app( arg )
+       text.any( arg )
   }
 
   def tab( n:Int, args:Any* )
   {
     text.tab( n )
      for( arg<-args )
-       text.app( arg )
+       text.any( arg )
   }
 
   def cmp( node:Hode[Text] ) : Boolean =
   {
     val t1 = text
     val t2 = node.data
-    val n1 = t1.find(sep)
-    val n2 = t2.find(sep)
+    val n1 = t1.indexOf(sep)
+    val n2 = t2.indexOf(sep)
     Text.equ(t1,0,n1,t2,0,n2)
   }
 
@@ -61,21 +61,21 @@ object Test
 
   def end( name:CS )
   {
-    val n   = text.find(sep)
-    if( Text.equ( text.a, 0, n, name, 0, name.length ) )
+    val n   = text.indexOf(sep)
+    if( Text.equ( text.toCS, 0, n, name, 0, name.length ) )
     {
       val node = hold.find( text )
       if( hold.in(node) )
       {
         val keep = node.data
         if( keep.equals(text) )
-          { Log.msg("Pass::"); Log.msg(text);  Log.eol() }
+          { Log.msg("Pass::"); Log.msg(text.toCS);  Log.eol() }
         else
-          { Log.msg("Fail::"); Log.msg(keep); Log.eol()
-            Log.msg("    ::"); Log.msg(text); Log.eol() }
+          { Log.msg("Fail::"); Log.msg(keep.toCS); Log.eol()
+            Log.msg("    ::"); Log.msg(text.toCS); Log.eol() }
       }
       else
-        {  Log.msg("Miss::"); Log.msg(text);  Log.eol() }
+        {  Log.msg("Miss::"); Log.msg(text.toCS);  Log.eol() }
     }
     else
       Log.trace( 2, "Need to call Log.beg(\"", name, "\")" )

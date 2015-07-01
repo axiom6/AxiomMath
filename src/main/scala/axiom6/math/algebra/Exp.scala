@@ -1,5 +1,5 @@
 package axiom6.math.algebra
-//import  axiom6.math.algebra.{ Calculate, Differentiate }
+import  scala.language.implicitConversions
 
 sealed abstract class Exp extends Calculate with Differentiate
 {
