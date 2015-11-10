@@ -95,7 +95,7 @@ class Suite //extends Suite
 
     Test.keep( "lam.a", "x+x+7+y" )
       val exp:Exp = Add(Add(Var("x"),Var("x")),Add(Num(7),Var("y")))
-      exp.ascii(t.x)
+      exp.ascii(t)
     Test.test( "lam.a", t )
 
     val env:Assign = { case "x" => 5 case "y" => 7 }
@@ -104,7 +104,7 @@ class Suite //extends Suite
     
     Test.keep( "pow.a", "(x+y)^3" )
       val pow:Exp = Pow(Add(Var("x"),Var("y")),Num(3))
-      pow.ascii(t.x)
+      pow.ascii(t)
     Test.test( "pow.a", t )    
     
     val ppp:Assign = { case "x" => 2 case "y" => 1 }
@@ -112,7 +112,7 @@ class Suite //extends Suite
     Test.test( "calc.b", "<x=2 y=1> ", t, " = ", pow.calc(ppp) )     
 
     Test.keep( "pow.dif.x", "3*(x+y)^2*(dx+dy)" )
-      pow.dif.ascii(t.x)
+      pow.dif.ascii(t)
     Test.test( "pow.dif.x", t )      
    }
  
@@ -144,7 +144,7 @@ class Suite //extends Suite
        val eb:Exp = AsciiParse( sb )
        val mb:Mex = Mex(eb)
            mb.dif.sim
-           mb.ascii(t.x)
+           mb.ascii(t)
      Test.test( "mex.dif.mb", t )  
    
      val rc:Assign = { case "x"=>1 case "y"=>2 case "z"=>3 }
@@ -153,7 +153,7 @@ class Suite //extends Suite
        val ea:Exp = AsciiParse("[[x,x^2,x^3][y,y^2,y^3][z,z^2,z^3]]")
        val ma:Mex = Mex(ea)
        val mc:Mat = ma.calcMex(rc)
-     Test.test( "mex.eval.mc", mc.text(t.x) ) 
+     Test.test( "mex.eval.mc", mc.text(t) )
 
      par( "mex.d.var.a", t, "[[a,b,c][d,e,f][g,h,i]]" )    
      par( "mex.d.var.b", t, "[[a,b^2][c,d^2]]" ) 
@@ -163,13 +163,13 @@ class Suite //extends Suite
        val ef:Exp = AsciiParse( sf )
        val mf:Mex = Mex(ef)
        val fm:Exp = mf.inv2x2
-         fm.ascii(t.x)       
+         fm.ascii(t)
      Test.test( "mex.f.inv2x2.a", t ) 
      
      val sg = "[[x,x^2,x^3][y,y^2][z]]"
      Test.keep( "mex.g", "[[x,x^2,x^3][y,y^2,0][z,0,0]]" ) 
      val mg:Exp = AsciiParse( sg )
-         mg.ascii(t.x)
+         mg.ascii(t)
      Test.test( "mex.g", t )    
    
      par(  "mex.h", t, "[[x^2,y^3,z^4][x^2,y^3,z^4][x^2,y^3,z^4]]" ) 
@@ -232,7 +232,7 @@ class Suite //extends Suite
      Test.keep( "dif.a", "z*y*dx+z*x*dy+x*y*dz" )
        val ea:Exp = AsciiParse( sa )
        val da:Exp = ea.dif.sim
-           da.ascii(t.x)
+           da.ascii(t)
      Test.test( "dif.a", t )
      
       val sb = "x^2*y^3*z^4"
@@ -240,42 +240,42 @@ class Suite //extends Suite
      Test.keep( "dif.sb", "z^4*y^3*2*x*dx+z^4*x^2*3*y^2*dy+x^2*y^3*4*z^3*dz" )
        val eb:Exp = AsciiParse( sb )
        val db:Exp = eb.dif.sim
-           db.ascii(t.x)
+           db.ascii(t)
      Test.test( "dif.sb", t )   
    
      val sc = "w*x^2*y^3*z^4"
      Test.keep( "dif.c", "z^4*y^3*x^2*dw+z^4*y^3*w*2*x*dx+z^4*w*x^2*3*y^2*dy+w*x^2*y^3*4*z^3*dz" )
        val ec:Exp = AsciiParse( sc )
        val dc:Exp = ec.dif.sim
-           dc.ascii(t.x)
+           dc.ascii(t)
      Test.test( "dif.c", t )       
    
      val sd = "sin(x)+cos(x)+tan(x)"
      Test.keep( "dif.d", "cos(x)*dx-sin(x)*dx-sec(x)^2*dx" )
        val ed:Exp = AsciiParse( sd )
        val dd:Exp = ed.dif.sim
-           dd.ascii(t.x)
+           dd.ascii(t)
      Test.test( "dif.d", t ) 
    
      val se = "csc(x)+sec(x)+cot(x)"
      Test.keep( "dif.e", "-csc(x)*cot(x)*dx+sec(x)*tan(x)*dx-csc(x)^2*dx" )
        val ee:Exp = AsciiParse( se )
        val de:Exp = ee.dif.sim
-           de.ascii(t.x)
+           de.ascii(t)
      Test.test( "dif.e", t ) 
    
       val sf = "arcsin(x)+arccos(x)+arctan(x)"
      Test.keep( "dif.f", "dx/sqrt(1-x^2)-dx/sqrt(1-x^2)+dx/(1+x^2)" )
        val ef:Exp = AsciiParse( sf )
        val df:Exp = ef.dif.sim
-           df.ascii(t.x)
+           df.ascii(t)
      Test.test( "dif.f", t ) 
    
      val sg = "arccsc(x)+arcsec(x)+arccot(x)"
      Test.keep( "dif.g", "-dx/(x*sqrt(x^2-1))+dx/(x*sqrt(x^2-1))-dx/(1+x^2)" )
        val eg:Exp = AsciiParse( sg )
        val dg:Exp = eg.dif.sim
-           dg.ascii(t.x)
+           dg.ascii(t)
      Test.test( "dif.g", t ) 
    
      lam( "dx.a",     t, "dx", "Dif(Var(x))" ) 
@@ -308,7 +308,7 @@ class Suite //extends Suite
      val sc = "ln(x)"
      Test.keep( "Lnn.b", "Lnn(Var(x))" )
        val ac:Exp = AsciiParse(sc)
-           ac.lambda(t.x)
+           ac.lambda(t)
      Test.test( "Lnn.b", t )  
      
      lam(  "Lnn.c",   t, "ln(x)", "Lnn(Var(x))" )     
@@ -352,7 +352,7 @@ class Suite //extends Suite
      val sa = "e&x$w~t@"
      Test.keep( "Err.a", "error", ' ', sa )
        val ea:Exp = AsciiParse(sa)
-           ea.ascii(t.x)
+           ea.ascii(t)
      Test.test( "Err.a", t,      ' ', sa  ) 
    
      par( "Err.b", t, "sin(x" )     
